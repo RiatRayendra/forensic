@@ -186,10 +186,10 @@ TIMEOUT=3600
 ```
 
 ## 🧪 Forensic Usage
-✅ Initial compromise triage
-🛠️ Internal incident response toolkit
-🧾 Live evidence collection (e.g., before reimaging)
-🔍 Security posture audits or threat hunting snapshots
+- ✅ Initial compromise triage
+- 🛠️ Internal incident response toolkit
+- 🧾 Live evidence collection (e.g., before reimaging)
+- 🔍 Security posture audits or threat hunting snapshots
 
 ## ⚠️ Notes
 * Requires sudo privileges for complete data collection.
