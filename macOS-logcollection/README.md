@@ -12,7 +12,9 @@ A comprehensive macOS forensic collection script designed to gather volatile and
 - Gathers environment variables of all users (including root).
 - Archives all results into a timestamped ZIP file for offline analysis.
 
-## 🚨 Folder Tree
+
+## 📂 Folder Tree
+```text
 macOS_Forensic_Collection_20250715_193712/
 ├── system_info.txt
 ├── hardware_info.txt
@@ -44,24 +46,23 @@ macOS_Forensic_Collection_20250715_193712/
 │   └── user1_firefox_history.txt
 ├── user_histories/
 │   ├── user1_bash_history.txt
-│   ├── user1_zsh_history.txt
-│   └── ...
+│   └── user1_zsh_history.txt
 ├── files_recent/
 │   ├── _system/
 │   │   ├── tmp_last90_symlink.txt
-│   │   ├── tmp_filestree_symlink.txt
 │   │   ├── tmp_last90_real.txt
+│   │   ├── tmp_filestree_symlink.txt
 │   │   ├── tmp_filestree_real.txt
 │   │   ├── var_log_last90.txt
 │   │   └── var_log_quarantined.txt
 │   └── user1/
 │       ├── Downloads_last90.txt
 │       ├── Documents_last90.txt
-│       ├── ...
 │       └── filestree_files.txt
 ├── recent_apps/
 │   ├── system_applications_last90.txt
 │   └── user_applications_last90.txt
+```
 
 ---
 
