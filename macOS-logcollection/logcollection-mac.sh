@@ -1,6 +1,6 @@
 #!/bin/bash
 # Final macOS Mseries Forensic Script - Enhanced All User Support
-# Author: RiatRayendra
+# Author: Riat Rayendra
 
 # Manual timeout: kill script after 3600 seconds (1 hour)
 TIMEOUT=3600  # seconds
