@@ -13,9 +13,9 @@ A comprehensive macOS forensic collection script designed to gather volatile and
 - Archives all results into a timestamped ZIP file for offline analysis.
 
 
-## 📂 Folder Tree
+## 📂 Collected Artifact Directory Tree
 ```text
-macOS_Forensic_Collection_20250715_193712/
+macOS_Forensic_Collection_[Date]_[time]
 ├── system_info.txt
 ├── hardware_info.txt
 ├── software_info.txt
