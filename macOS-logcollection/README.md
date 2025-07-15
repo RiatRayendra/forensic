@@ -74,77 +74,128 @@ chmod +x logcollection-mac.sh
 ```
 
 ## 📁 Artifact Details
-🔍 System Info
-system_info.txt, hardware_info.txt, software_info.txt
-→ Captures system and hardware profile for baseline analysis.
 
-👤 User Enumeration
-user_list.txt
-→ Lists all users on the system.
-user_activity.txt
-→ Login history for each user via the last command.
+### 🔍 System Info
+**Files:**  
+`system_info.txt`, `hardware_info.txt`, `software_info.txt`  
+**Purpose:**  
+Captures system and hardware profile for baseline analysis.
 
-🧠 Process and Memory Snapshots
-running_processes.txt, top_output.txt
-→ Point-in-time snapshot of active processes and memory usage.
+---
 
-🌐 Networking Data
-network_connections.txt, open_ports_lsof.txt, network_interfaces.txt, arp_cache.txt
-→ Details on open sockets, listening ports, interface IPs, and ARP cache.
+### 👤 User Enumeration
+**Files:**  
+- `user_list.txt` — Lists all users on the system  
+- `user_activity.txt` — Login history for each user via the `last` command
 
-📎 Persistence Mechanisms
-persistence/ folder:
-LaunchAgents, LaunchDaemons, login items from System and Users.
+---
 
-Crontab entries.
+### 🧠 Process and Memory Snapshots
+**Files:**  
+`running_processes.txt`, `top_output.txt`  
+**Purpose:**  
+Point-in-time snapshot of active processes and memory usage.
 
-🌍 Environment Variables
-environment_vars/
-→ Captures shell environment of each user, useful to trace injected paths or variables.
+---
 
-🖱️ Browser History
-browser_history/
-→ History from:
-Google Chrome
-Microsoft Edge
-Safari
-Firefox (per profile)
-Useful to trace user activity, visited sites, and timestamps.
+### 🌐 Networking Data
+**Files:**  
+`network_connections.txt`, `open_ports_lsof.txt`, `network_interfaces.txt`, `arp_cache.txt`  
+**Purpose:**  
+Details on open sockets, listening ports, interface IPs, and ARP cache.
 
-📜 Shell History
-user_histories/
-→ .bash_history and .zsh_history from each user.
+---
 
-📁 File Access & Malware Staging Areas
-files_recent/
-→ Scans critical user folders like Downloads, Documents, Library/LaunchAgents, .config, etc., for:
-Files modified in the last 90 days
+### 📎 Persistence Mechanisms
+**Folder:**  
+`persistence/`  
+**Contains:**  
+- LaunchAgents & LaunchDaemons (system-wide and per-user)  
+- Login items  
+- Crontab entries (`user_crontab.txt`)
 
-Quarantined files (macOS Gatekeeper)
-🧩 Recently Installed Applications
-recent_apps/
-→ Lists applications (both system-wide and per-user) installed in the past 90 days.
+---
 
-🔐 Security Configurations
-kernel_extensions.txt, sip_status.txt
-→ Collects loaded kernel modules and System Integrity Protection status.
+### 🌍 Environment Variables
+**Folder:**  
+`environment_vars/`  
+**Purpose:**  
+Captures environment variables (`printenv`) for each user and root. Useful to trace injected paths or malicious startup config.
 
-⏱️ Timeout Control
-The script enforces a 1-hour runtime timeout. If exceeded, it will auto-terminate all child processes to avoid infinite execution due to large systems or slow queries.
+---
+
+### 🖱️ Browser History
+**Folder:**  
+`browser_history/`  
+**Browsers Supported:**  
+- Google Chrome  
+- Microsoft Edge  
+- Safari  
+- Firefox (multi-profile support)  
+**Purpose:**  
+Historical browsing activity, timestamps, and visited URLs per user.
+
+---
+
+### 📜 Shell History
+**Folder:**  
+`user_histories/`  
+**Files:**  
+`.bash_history`, `.zsh_history` per user  
+**Purpose:**  
+Useful for tracing commands executed by each user.
+
+---
+
+### 📁 File Access & Malware Staging Areas
+**Folder:**  
+`files_recent/`  
+**Scanned Locations:**  
+- Downloads, Documents, LaunchAgents, `.config`, `.local`, Application Support, `tmp`, etc.  
+**Purpose:**  
+- Finds files modified in the last 90 days  
+- Detects files flagged as `quarantined` by Gatekeeper (potential malware)
+
+---
+
+### 🧩 Recently Installed Applications
+**Folder:**  
+`recent_apps/`  
+**Files:**  
+- `system_applications_last90.txt`  
+- `user_applications_last90.txt`  
+**Purpose:**  
+Lists applications installed within the past 90 days (system and user).
+
+---
+
+### 🔐 Security Configurations
+**Files:**  
+- `kernel_extensions.txt` — Loaded kernel extensions (from `kextstat`)  
+- `sip_status.txt` — System Integrity Protection status (from `csrutil status`)
+
+---
+
+### ⏱️ Timeout Control
+The script enforces a **1-hour timeout** to avoid excessive runtime. If the script runs longer than this, it will automatically terminate all child processes.
+
+You can modify this value at the top of the script:
+
+```bash
+TIMEOUT=3600
+```
 
 ## 🧪 Forensic Usage
-This script is ideal for:
-Initial compromise triage
-Internal incident response toolkit
-Live evidence collection (e.g., prior to reimaging)
-Security posture audits
+✅ Initial compromise triage
+🛠️ Internal incident response toolkit
+🧾 Live evidence collection (e.g., before reimaging)
+🔍 Security posture audits or threat hunting snapshots
 
 ## ⚠️ Notes
-The script requires sudo privileges to access all users' environment and protected system areas.
-
-ZIP compression is done with relative paths to ensure proper folder structure upon extraction.
-
-It is safe to run on live systems — no files are modified, only read and copied.
+* Requires sudo privileges for complete data collection.
+* Read-only: no system modifications are performed.
+* Output ZIP uses relative paths for safe and clean extraction.
+* Suitable for live systems — can be run remotely or interactively.
 
 ## License
 MIT License — Use freely, modify as needed for internal security response use cases.
