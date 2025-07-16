@@ -70,7 +70,7 @@ macOS_Forensic_Collection_[Date]_[time]
 
 ```bash
 chmod +x logcollection-mac.sh
-./logcollection-mac.sh
+sudo bash logcollection-mac.sh
 ```
 
 ## 📁 Artifact Details
